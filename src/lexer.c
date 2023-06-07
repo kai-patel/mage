@@ -99,6 +99,10 @@ static Token *make_token(TokenType t, char *lexeme) {
 }
 
 Token *lexer_next(Lexer *lexer) {
+  if (lexer->position > 0 && lexer->ch == '\0') {
+    return make_token(Token_Eof, NULL);
+  }
+
   step(lexer);
   Token *token = NULL;
 
@@ -168,6 +172,7 @@ Token *lexer_next(Lexer *lexer) {
   if (isalpha(c) || c == '_') {
     size_t len = read_identifier_length(lexer);
     char *identifier = malloc(sizeof(*identifier) * len + 1);
+    const char *start_of_ident = &lexer->input[lexer->position - len - 1];
 
     if (identifier == NULL) {
       perror("Could not create identifier");
@@ -175,7 +180,7 @@ Token *lexer_next(Lexer *lexer) {
     }
 
     errno_t result =
-        strncpy_s(identifier, sizeof(char) * len + 1, lexer->input, len);
+        strncpy_s(identifier, sizeof(char) * len + 1, start_of_ident, len);
 
     if (result != 0) {
       perror("Could not copy identifier string");
