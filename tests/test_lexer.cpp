@@ -1,5 +1,8 @@
+extern "C" {
 #include "lexer.h"
 #include "mage.h"
+}
+
 #include <gtest/gtest.h>
 
 TEST(LexerTests, SingleTokens) {
@@ -16,22 +19,23 @@ TEST(LexerTests, SingleTokens) {
   Token *actual[n_expected];
 
   Lexer *lexer = lexer_new(input);
-  Token *token = NULL;
+  Token *token = (Token *)malloc(sizeof(*token));
+
   size_t n_actual = 0;
 
-  while (token->type != Token_Eof) {
+  while (token && token->type != Token_Eof) {
     token = lexer_next(lexer);
     actual[n_actual++] = token;
   }
 
-  ASSERT_EQ(n_actual, n_expected - 1);
+  ASSERT_EQ(n_actual, n_expected);
 
   for (size_t i = 0; i < n_expected; i++) {
     EXPECT_EQ(expected[i].type, actual[i]->type);
     EXPECT_EQ(expected[i].lexeme, actual[i]->lexeme);
   }
 
-  for (size_t i = 0; i < n_expected; i++) {
+  for (size_t i = 0; i < n_actual; i++) {
     free(actual[i]);
   }
 }
