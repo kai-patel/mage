@@ -11,6 +11,7 @@ project(
   LANGUAGES C CXX)
 
 set(CMAKE_MODULE_PATH, "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(src)
 

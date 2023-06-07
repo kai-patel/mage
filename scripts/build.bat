@@ -1,4 +1,5 @@
 set CC=clang
+set CFLAGS=-Wall -Wextra
 set CXX=clang++
 
 cd %~dp0
