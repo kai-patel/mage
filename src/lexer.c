@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 struct LexerStruct {
-  char *input;
+  const char *input;
   char ch;
   size_t position;
 };
@@ -27,7 +27,7 @@ Lexer *lexer_new(const char *input) {
 
 static void step(Lexer *lexer) { lexer->ch = lexer->input[lexer->position++]; }
 
-static char peek(Lexer *lexer) { return lexer->input[lexer->position + 1]; }
+static char peek(Lexer *lexer) { return lexer->input[lexer->position]; }
 
 static Token *make_token(TokenType t, char *lexeme) {
   Token *token = malloc(sizeof(*token));
