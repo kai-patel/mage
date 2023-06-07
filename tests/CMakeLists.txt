@@ -22,3 +22,4 @@ macro(package_add_test TESTNAME)
 endmacro()
 
 package_add_test(TestAST test_ast.cpp)
+package_add_test(TestLexer test_lexer.cpp)
