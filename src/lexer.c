@@ -179,7 +179,7 @@ Token *lexer_next(Lexer *lexer) {
       exit(1);
     }
 
-    errno_t result =
+    int result =
         strncpy_s(identifier, sizeof(char) * len + 1, start_of_ident, len);
 
     if (result != 0) {
