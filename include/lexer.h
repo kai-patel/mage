@@ -28,6 +28,7 @@ typedef enum {
   Token_False,
   Token_If,
   Token_Else,
+  Token_While,
   Token_Return,
 } TokenType;
 
