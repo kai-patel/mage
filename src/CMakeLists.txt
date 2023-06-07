@@ -1,4 +1,4 @@
-set(HEADER_LIST "../include/mage.h")
+set(HEADER_LIST "../include/mage.h" "../include/lexer.h")
 
 add_library(mage STATIC mage.c ${HEADER_LIST})
 target_include_directories(mage PUBLIC ../include)
