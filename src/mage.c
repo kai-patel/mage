@@ -3,5 +3,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-int main() {
-}
+extern Lexer *lexer_new(const char *);
+extern Token *lexer_next(Lexer *);
+
