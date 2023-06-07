@@ -1,3 +1,4 @@
+#include <string.h>
 extern "C" {
 #include "lexer.h"
 #include "mage.h"
@@ -14,9 +15,9 @@ TEST(LexerTests, SingleTokens) {
       {Token_Semicolon, NULL}, {Token_LCurly, NULL}, {Token_LParen, NULL},
       {Token_RParen, NULL},    {Token_RCurly, NULL}, {Token_Eof, NULL}};
 
-  size_t n_expected = 15;
+  const size_t n_expected = 15;
 
-  Token *actual[n_expected];
+  Token *actual[n_expected] = {NULL};
 
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
@@ -45,9 +46,9 @@ TEST(LexerTests, IdentifierTokens) {
   const char *expected[] = {"The",  "qu_ick", "brown1", "fox", "ju34_umped",
                             "over", "the",    "lazy",   "dog", NULL};
 
-  size_t n_expected = 10;
+  const size_t n_expected = 10;
 
-  Token *actual[n_expected];
+  Token *actual[n_expected] = {NULL};
 
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
