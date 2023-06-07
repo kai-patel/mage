@@ -43,7 +43,7 @@ TEST(LexerTests, SingleTokens) {
 
 TEST(LexerTests, IdentifierTokens) {
   const char *input = "The qu_ick brown1 fox ju34_mped over the lazy dog";
-  const char *expected[] = {"The",  "qu_ick", "brown1", "fox", "ju34_umped",
+  const char *expected[] = {"The",  "qu_ick", "brown1", "fox", "ju34_mped",
                             "over", "the",    "lazy",   "dog", NULL};
 
   const size_t n_expected = 10;
@@ -64,7 +64,7 @@ TEST(LexerTests, IdentifierTokens) {
 
   for (size_t i = 0; i < n_expected; i++) {
     EXPECT_EQ(i == n_expected - 1 ? Token_Eof : Token_Ident, actual[i]->type);
-    EXPECT_EQ(expected[i], actual[i]->lexeme);
+    EXPECT_STREQ(expected[i], actual[i]->lexeme);
   }
 
   for (size_t i = 0; i < n_actual; i++) {
