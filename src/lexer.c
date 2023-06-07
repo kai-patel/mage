@@ -3,9 +3,9 @@
 #include <errno.h>
 #include <lexer.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 struct LexerStruct {
   const char *input;
@@ -180,8 +180,10 @@ Token *lexer_next(Lexer *lexer) {
       exit(1);
     }
 
-    int result =
-        strncpy_s(identifier, sizeof(char) * len + 1, start_of_ident, len);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    char *result = strncpy(identifier, start_of_ident, len);
+#pragma clang diagnostic pop
 
     if (result != 0) {
       perror("Could not copy identifier string");
