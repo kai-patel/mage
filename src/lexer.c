@@ -185,6 +185,8 @@ Token *lexer_next(Lexer *lexer) {
     char *result = strncpy(identifier, start_of_ident, len);
 #pragma clang diagnostic pop
 
+    identifier[len] = '\0';
+
     if (result == 0) {
       perror("Could not copy identifier string");
       exit(1);
