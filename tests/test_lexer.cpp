@@ -21,6 +21,7 @@ TEST(LexerTests, SingleTokens) {
 
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
+  token->type = Token_Illegal;
 
   size_t n_actual = 0;
 
@@ -54,6 +55,7 @@ TEST(LexerTests, IdentifierTokens) {
 
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
+  token->type = Token_Illegal;
 
   size_t n_actual = 0;
 
@@ -85,8 +87,8 @@ TEST(LexerTests, NumberTokens) {
   Token *actual[n_expected] = {NULL};
 
   Lexer *lexer = lexer_new(input);
-
   Token *token = (Token *)malloc(sizeof(*token));
+  token->type = Token_Illegal;
 
   size_t n_actual = 0;
 
