@@ -2,8 +2,8 @@
 #define LEXER_H_
 #include <stdint.h>
 typedef enum {
-  Token_Illegal,
   Token_Eof,
+  Token_Illegal,
   Token_Ident,
   Token_Int,
   Token_Assign,
