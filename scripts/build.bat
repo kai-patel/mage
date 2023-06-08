@@ -1,6 +1,8 @@
 set CC=clang
-set CFLAGS=-Wall -Wextra
+set CFLAGS=-Wall -Wextra -g
 set CXX=clang++
+set CXXFLAGS=-Wall -Wextra -g
+set LDFLAGS=
 
 cd %~dp0
 cd ..
