@@ -237,3 +237,10 @@ Token *lexer_next(Lexer *lexer) {
 
   return token;
 }
+
+TokenType lexer_next_type(Lexer *lexer) {
+  Token *token = lexer_next(lexer);
+  TokenType t = token->type;
+  free(token);
+  return t;
+}
