@@ -39,6 +39,8 @@ TEST(LexerTests, SingleTokens) {
   for (size_t i = 0; i < n_actual; i++) {
     free(actual[i]);
   }
+
+  free(lexer);
 }
 
 TEST(LexerTests, IdentifierTokens) {
@@ -70,6 +72,8 @@ TEST(LexerTests, IdentifierTokens) {
   for (size_t i = 0; i < n_actual; i++) {
     free(actual[i]);
   }
+
+  free(lexer);
 }
 
 TEST(LexerTests, NumberTokens) {
