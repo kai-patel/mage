@@ -71,3 +71,36 @@ TEST(LexerTests, IdentifierTokens) {
     free(actual[i]);
   }
 }
+
+TEST(LexerTests, NumberTokens) {
+  const char *input = "1 10 2_300 45872 82_4_21";
+  const char *expected[] = {"1", "10", "2_300", "45872", "82_4_21", NULL};
+
+  const size_t n_expected = 6;
+
+  Token *actual[n_expected] = {NULL};
+
+  Lexer *lexer = lexer_new(input);
+
+  Token *token = (Token *)malloc(sizeof(*token));
+
+  size_t n_actual = 0;
+
+  while (token && token->type != Token_Eof) {
+    token = lexer_next(lexer);
+    actual[n_actual++] = token;
+  }
+
+  ASSERT_EQ(n_actual, n_expected);
+
+  for (size_t i = 0; i < n_expected; i++) {
+    EXPECT_EQ(i == n_expected - 1 ? Token_Eof : Token_Int, actual[i]->type);
+    EXPECT_STREQ(expected[i], actual[i]->lexeme);
+  }
+
+  for (size_t i = 0; i < n_actual; i++) {
+    free(actual[i]);
+  }
+
+  free(lexer);
+}
