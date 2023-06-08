@@ -49,6 +49,16 @@ static size_t read_identifier_length(Lexer *lexer) {
   return lexer->position - start_pos;
 }
 
+static size_t read_integer_length(Lexer *lexer) {
+  size_t start_pos = lexer->position;
+
+  while (isdigit(lexer->ch) || lexer->ch == '_') {
+    step(lexer);
+  }
+
+  return lexer->position - start_pos;
+}
+
 static TokenType identifier_to_type(const char *identifier) {
   if (strcmp(identifier, "defn") == 0) {
     return Token_Function;
@@ -171,6 +181,7 @@ Token *lexer_next(Lexer *lexer) {
 
   // String Tokens
   if (isalpha(c) || c == '_') {
+    // Identifiers
     size_t len = read_identifier_length(lexer);
     char *identifier = malloc(sizeof(*identifier) * len + 1);
     const char *start_of_ident = &lexer->input[lexer->position - len - 1];
@@ -197,6 +208,26 @@ Token *lexer_next(Lexer *lexer) {
 
     token = make_token(id_type, id_lexeme);
 
+    return token;
+  } else if (isdigit(c)) {
+    // Numbers
+    size_t len = read_integer_length(lexer);
+    char *number = malloc(sizeof(*number) * len + 1);
+    const char *start_of_integer = &lexer->input[lexer->position - len - 1];
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    char *result = strncpy(number, start_of_integer, len);
+#pragma clang diagnostic pop
+
+    number[len] = '\0';
+
+    if (result == 0) {
+      perror("Could not copy number as string");
+      exit(1);
+    }
+
+    token = make_token(Token_Int, number);
     return token;
   }
 
