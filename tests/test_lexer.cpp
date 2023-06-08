@@ -41,6 +41,7 @@ TEST(LexerTests, SingleTokens) {
     free(actual[i]);
   }
 
+  free(token);
   free(lexer);
 }
 
@@ -75,6 +76,7 @@ TEST(LexerTests, IdentifierTokens) {
     free(actual[i]);
   }
 
+  free(token);
   free(lexer);
 }
 
@@ -108,5 +110,6 @@ TEST(LexerTests, NumberTokens) {
     free(actual[i]);
   }
 
+  free(token);
   free(lexer);
 }
