@@ -22,6 +22,7 @@ TEST(LexerTests, SingleTokens) {
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
   token->type = Token_Illegal;
+  Token *dummy = token;
 
   size_t n_actual = 0;
 
@@ -41,7 +42,7 @@ TEST(LexerTests, SingleTokens) {
     free(actual[i]);
   }
 
-  free(token);
+  free(dummy);
   free(lexer);
 }
 
@@ -57,6 +58,7 @@ TEST(LexerTests, IdentifierTokens) {
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
   token->type = Token_Illegal;
+  Token *dummy = token;
 
   size_t n_actual = 0;
 
@@ -76,7 +78,7 @@ TEST(LexerTests, IdentifierTokens) {
     free(actual[i]);
   }
 
-  free(token);
+  free(dummy);
   free(lexer);
 }
 
@@ -91,6 +93,7 @@ TEST(LexerTests, NumberTokens) {
   Lexer *lexer = lexer_new(input);
   Token *token = (Token *)malloc(sizeof(*token));
   token->type = Token_Illegal;
+  Token *dummy = token;
 
   size_t n_actual = 0;
 
@@ -110,6 +113,6 @@ TEST(LexerTests, NumberTokens) {
     free(actual[i]);
   }
 
-  free(token);
+  free(dummy);
   free(lexer);
 }
