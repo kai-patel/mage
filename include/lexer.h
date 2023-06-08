@@ -1,8 +1,8 @@
 #ifndef LEXER_H_
 #define LEXER_H_
 typedef enum {
-  Token_Eof = 0,
   Token_Illegal,
+  Token_Eof,
   Token_Ident,
   Token_Int,
   Token_Assign,
