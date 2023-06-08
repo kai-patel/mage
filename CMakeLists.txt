@@ -10,6 +10,11 @@ project(
   DESCRIPTION "The Mage Programming Language"
   LANGUAGES C CXX)
 
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
+add_compile_options(-fsanitize=address,undefined)
+add_link_options(-fsanitize=address,undefined)
+
 set(CMAKE_MODULE_PATH, "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

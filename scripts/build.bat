@@ -12,6 +12,6 @@ if exist build\ (
 )
 
 mkdir build
-cmake -S . -B build -G"Unix Makefiles" -DBUILD_TESTING=1
+cmake -S . -B build -G"Unix Makefiles" -DBUILD_TESTING=1 -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 
