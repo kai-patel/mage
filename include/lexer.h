@@ -41,4 +41,5 @@ typedef struct LexerStruct Lexer;
 Lexer *lexer_new(const char *);
 Token *lexer_next(Lexer *);
 TokenType lexer_next_type(Lexer *);
+void free_token(Token *);
 #endif

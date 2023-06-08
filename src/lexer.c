@@ -28,6 +28,14 @@ Lexer *lexer_new(const char *input) {
   return lexer;
 }
 
+void free_token(Token *token) {
+  if (token->lexeme != NULL) {
+    free(token->lexeme);
+  }
+
+  free(token);
+}
+
 static void step(Lexer *lexer) { lexer->ch = lexer->input[lexer->position++]; }
 
 static char peek(Lexer *lexer) { return lexer->input[lexer->position]; }
@@ -241,6 +249,6 @@ Token *lexer_next(Lexer *lexer) {
 TokenType lexer_next_type(Lexer *lexer) {
   Token *token = lexer_next(lexer);
   TokenType t = token->type;
-  free(token);
+  free_token(token);
   return t;
 }
