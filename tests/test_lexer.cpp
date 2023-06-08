@@ -39,7 +39,7 @@ TEST(LexerTests, SingleTokens) {
   }
 
   for (size_t i = 0; i < n_actual; i++) {
-    free(actual[i]);
+    free_token(actual[i]);
   }
 
   free(dummy);
@@ -75,7 +75,7 @@ TEST(LexerTests, IdentifierTokens) {
   }
 
   for (size_t i = 0; i < n_actual; i++) {
-    free(actual[i]);
+    free_token(actual[i]);
   }
 
   free(dummy);
@@ -110,7 +110,7 @@ TEST(LexerTests, NumberTokens) {
   }
 
   for (size_t i = 0; i < n_actual; i++) {
-    free(actual[i]);
+    free_token(actual[i]);
   }
 
   free(dummy);
