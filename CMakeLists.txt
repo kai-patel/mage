@@ -38,3 +38,17 @@ if(EXISTS "${LOC_PATH}")
       "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles."
   )
 endif()
+
+message(CMAKE_CURRENT_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+
+option(BUILD_DOCS "Build documentation with doxygen" ON)
+if(BUILD_DOCS)
+  find_package(Doxygen)
+
+  if(DOXYGEN_FOUND)
+    set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/docs/doxygen_docs)
+    doxygen_add_docs(doxygen_docs include ALL)
+  else(DOXYGEN_FOUND)
+    message("Doxygen not found, not building documentation")
+  endif(DOXYGEN_FOUND)
+endif(BUILD_DOCS)
